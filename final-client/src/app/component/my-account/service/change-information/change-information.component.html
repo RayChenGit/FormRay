@@ -1,0 +1,65 @@
+<main class="container centerRay">
+
+  <mat-card class="cardChange mat-elevation-z0">
+
+    <mat-card-title class="title">Update Information</mat-card-title>
+    <mat-card-subtitle class="title1">Built-in information is your current information</mat-card-subtitle>
+
+    <form  [formGroup]="informationGroup" (ngSubmit)="update()">
+
+      <div fxLayout="column" fxLayoutAlign="center">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Phone</mat-label>
+          <input type="text" matInput formControlName="phone" placeholder="xxx-xxx-xxxx" (input)="phonePattern($event)">
+          <mat-error *ngIf="informationGroup.get('phone').getError('required')">Phone number is required when updating information</mat-error>
+          <mat-error *ngIf="informationGroup.get('phone').getError('pattern')">Phone number is not valid</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email">
+          <mat-error *ngIf="informationGroup.get('email').getError('required')">Email is required when updating information</mat-error>
+          <mat-error *ngIf="informationGroup.get('email').getError('pattern')">Email is not valid</mat-error>
+        </mat-form-field>
+
+        <div style="display: flex">
+          <mat-form-field appearance="outline" style="flex: 1">
+            <mat-label>Address</mat-label>
+            <input type="text" matInput formControlName="address1">
+            <mat-error>Main address is required when updating information</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" style="flex: 1">
+            <mat-label>apt number, etc.</mat-label>
+            <input type="text" matInput formControlName="address2">
+          </mat-form-field>
+        </div>
+
+        <div style="display: flex">
+          <mat-form-field appearance="outline" style="flex: 1;">
+            <mat-label>City</mat-label>
+            <input type="text" matInput formControlName="city">
+            <mat-error>City information is required when updating information</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" style="flex: 1;">
+            <mat-label>Zip</mat-label>
+            <input type="text" matInput formControlName="zip">
+            <mat-error *ngIf="informationGroup.get('zip').getError('required')">Zip code is required when updating information</mat-error>
+            <mat-error *ngIf="informationGroup.get('zip').getError('pattern')">Zip code number is not valid</mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <button type="submit" [disabled]="informationGroup.invalid" style="width:100%; margin-top: 15px; margin-bottom: 30px;" mat-raised-button color="primary" >Update</button>
+
+      <div style="display: flex; justify-content: center">
+        <a href="javascript:;" (click)="back()">Back to service list</a>
+      </div>
+
+    </form>
+
+  </mat-card>
+</main>

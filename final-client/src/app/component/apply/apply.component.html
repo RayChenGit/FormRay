@@ -1,0 +1,225 @@
+<div *ngIf="cardType" class="parent">
+
+  <div class="left">
+    <mat-card class="mat-elevation-z3">
+
+      <div class="hide">
+        <div>
+          <img class="hide-img" [src]="cardType.image" alt="card-img">
+        </div>
+        <div style="margin-left: 30px;">
+          <p class="card-name">{{cardType.name}}</p>
+          <p class="card-fee">Annual Fee: {{cardType.annualfee}}</p>
+          <p class="card-description">{{cardType.description}}</p>
+        </div>
+      </div>
+
+      <div class="apply-form-container">
+
+        <mat-horizontal-stepper linear="true" #stepper>
+
+          <ng-container *ngIf="true">
+            <mat-step [stepControl]="applyFormGroup" label="Provide Info" >
+              <div fxLayout="column" fxLayoutAlign="center">
+
+                <p style="font-size: 18px;">
+                  PERSONAL INFORMATION
+                </p>
+
+                <form  [formGroup]="applyFormGroup" >
+
+                  <div fxLayout="column" fxLayoutAlign="center">
+
+                    <div style="display:flex;">
+                    <mat-form-field appearance="outline" style="flex: 1;">
+                      <mat-label>FIRST NAME</mat-label>
+                      <input type="text" matInput formControlName="firstname" autocomplete="off">
+                      <mat-error>Please enter your First Name</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="flex: 1;">
+                      <mat-label>LAST NAME</mat-label>
+                      <input type="text" matInput formControlName="lastname" autocomplete="off">
+                      <mat-error>Please enter your Last Name</mat-error>
+                    </mat-form-field>
+                    </div>
+
+                    <mat-form-field appearance="outline">
+                      <mat-label>EMAIL ADDRESS</mat-label>
+                      <input type="email" matInput formControlName="email">
+                      <mat-error *ngIf="applyFormGroup.get('email').getError('required')">Please enter your email address</mat-error>
+                      <mat-error *ngIf="applyFormGroup.get('email').getError('pattern')">Email is not valid</mat-error>
+                    </mat-form-field>
+
+                    <mat-card class="info-box">
+                      <p class="info-word">By providing your email address, it may be used to send you updates on your application status and servicing messages and you agree to receive information about products, services and offers.</p>
+                    </mat-card>
+
+                    <mat-form-field>
+                      <mat-label>DATE OF BIRTH</mat-label>
+                      <input type="date" matInput formControlName="datebirth">
+                      <mat-error>Please enter you date of birth to continue</mat-error>
+
+
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                      <mat-label>PHONE</mat-label>
+                      <input type="text" matInput formControlName="phonenumber" name="phonenumber" placeholder="xxx-xxx-xxxx" (input)="phonePattern($event)">
+                      <mat-error *ngIf="applyFormGroup.get('phonenumber').getError('required')">Phone number is required for contacting you</mat-error>
+                      <mat-error *ngIf="applyFormGroup.get('phonenumber').getError('pattern')">Phone number is not valid</mat-error>
+                    </mat-form-field>
+
+                    <div style="display: flex">
+                    <mat-form-field appearance="outline" style="flex: 1;">
+                      <mat-label>ADDRESS</mat-label>
+                      <input type="text" matInput formControlName="address">
+                      <mat-error>Please enter you address to continue</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" style="flex: 1;">
+                      <mat-label>APT STE</mat-label>
+                      <input type="text" matInput formControlName="aptste">
+                    </mat-form-field>
+                    </div>
+
+                    <div style="display: flex">
+                    <mat-form-field appearance="outline" style="flex:1">
+                      <mat-label>City</mat-label>
+                      <input type="text" matInput formControlName="city">
+                      <mat-error>Please enter your City</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" style="width: 100px;">
+                      <mat-label>Zip</mat-label>
+                      <input type="text" matInput formControlName="zip">
+                      <mat-error *ngIf="applyFormGroup.get('zip').getError('required')">Please enter your Zip code</mat-error>
+                      <mat-error *ngIf="applyFormGroup.get('zip').getError('pattern')">Zip code number is not valid</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" style="flex: 1;">
+                      <mat-label>STATE</mat-label>
+                      <mat-select formControlName="state">
+                        <mat-option *ngFor="let state of states" [value]="state" >
+                          {{state}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error>Please select your state from the drop down menu</mat-error>
+                    </mat-form-field>
+                    </div>
+
+                    <p style="font-size: 18px;">
+                      INCOME INFORMATION
+                    </p>
+
+                    <mat-form-field appearance="outline">
+                      <mat-label>SOCIAL SECURITY NUMBER</mat-label>
+                      <input type="text" matInput formControlName="ssn" name="ssn" placeholder="xxx-xx-xxxx" (input)="ssnPattern($event)">
+                      <mat-error *ngIf="applyFormGroup.get('ssn').getError('required')">Please enter your Social Security Number to continue</mat-error>
+                      <mat-error *ngIf="applyFormGroup.get('ssn').getError('pattern')">SSN may not be valid</mat-error>
+                    </mat-form-field>
+
+                    <mat-card class="info-box1">
+                      <p class="info-word1">SSN is required to verify your identity. By providing your SSN number, the processing of your application would be expedited.</p>
+                    </mat-card>
+
+                    <mat-form-field appearance="outline">
+                      <mat-label>TOTAL ANNUAL INCOME</mat-label>
+                      <input type="text" matInput formControlName="annualincome" name="annualincome" (input)="onlyNumber($event)">
+                      <mat-error  *ngIf="applyFormGroup.get('annualincome').getError('required')">Please enter your total annual income to continue</mat-error>
+                      <mat-error *ngIf="applyFormGroup.get('annualincome').getError(',minlength')">Your total annual income must contain at least 4 numbers.</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                      <mat-label>INCOME SOURCE</mat-label>
+                      <mat-select formControlName="incomesource">
+                        <mat-option *ngFor="let source of sources" [value]="source" >
+                          {{source}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error>Please enter your income source to continue</mat-error>
+                    </mat-form-field>
+
+
+                  <button mat-raised-button color="primary" [disabled]="applyFormGroup.invalid" matStepperNext style="width:100%; margin-top: 15px; margin-bottom: 30px;" >Continue</button>
+
+                  </div>
+                </form>
+
+              </div>
+            </mat-step>
+          </ng-container>
+
+          <ng-container>
+            <mat-step  optional="false" label="Submit application" disabled="true">
+              <div style="display: flex; margin-left: 20px; flex-direction: column; width: 500px; flex: 1;">
+
+              <div>
+              <p class="title">
+                {{applyFormGroup.get('firstname').value}} Please read some important information about this Card.
+              </p>
+              </div>
+
+              <div>
+              <p class="subtitle">
+                TERMS & CONDITIONS
+              </p>
+              <a href="javascript:void(0)">view terms and conditions</a>
+
+              <p style="margin-top: 15px">By submitting this application, I certify that I have read, met, and agreed to all of the terms, conditions, and disclosures outlined above/as stated above, which contain rate, fee and other important information.</p>
+              <p>Membership Rewards® partners will receive certain information about you in order to provide the benefits of your Membership Rewards account.</p>
+              <hr>
+              </div>
+
+              <div>
+              <p class="subtitle">
+                THIS CARD HAS GONE PAPERLESS
+              </p>
+              <p>If we approve your application, we’ll deliver your Agreement (including Account Opening Disclosures) electronically. We’ll also deliver other important information about your account electronically, once you have created your online account, including:</p>
+              <ul>
+                <li>Future billing statements</li>
+                <li>Certain legal disclosures</li>
+                <li>Other account communications</li>
+              </ul>
+              <hr>
+              </div>
+
+              <div>
+                <mat-checkbox class="example-margin" [(ngModel)]="checked" >By checking this box</mat-checkbox>
+                <p>you confirm you have reviewed, meet the requirements of and agree to the terms and conditions. </p>
+                <hr>
+                <button class="btn btn-primary" [disabled]="!checked" (click)="apply()">Agree & Submit Application</button>
+              </div>
+
+              </div>
+            </mat-step>
+          </ng-container>
+
+        </mat-horizontal-stepper>
+
+      </div>
+    </mat-card>
+
+  </div>
+
+  <div class="right">
+
+    <div class="img-box">
+      <img class="card-img" [src]="cardType.image" alt="card-img">
+    </div>
+    <div class="right-information">
+      <p class="card-name">{{cardType.name}}</p>
+      <p class="card-fee">Annual Fee: {{cardType.annualfee}}</p>
+      <p class="card-description">{{cardType.description}}</p>
+      <hr>
+      <div>
+        <p class="card-bonus">{{cardType.bonus}}</p>
+        <p class="card-otherbonus">{{cardType.otherbonus}}</p>
+      </div>
+      <hr>
+    </div>
+
+  </div>
+
+</div>
+
+

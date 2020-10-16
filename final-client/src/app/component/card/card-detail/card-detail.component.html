@@ -1,0 +1,57 @@
+<div *ngIf="cardType">
+
+  <div class="parent">
+
+    <div class="left">
+
+        <mat-card-header>
+          <mat-card-title style="font-size: 20px;">{{cardType.name}}</mat-card-title>
+          <mat-card-subtitle style="color: black">Annual Fee: {{cardType.annualfee}}</mat-card-subtitle>
+        </mat-card-header>
+
+        <img class="card-img" [src]="cardType.image" alt="card image">
+        <p class="card-description">{{cardType.description}}</p>
+        <button type="button" class="btn btn-primary" (click)="routeToSubmit()">Apply Now</button>
+
+    </div>
+
+    <div class="right">
+      <mat-card class="mat-elevation-z2" style="width: 700px;">
+
+        <div class="hide">
+          <div>
+            <img class="hide-img" [src]="cardType.image" alt="card-img">
+          </div>
+          <div style="margin-left: 30px;">
+            <p class="card-name">{{cardType.name}}</p>
+            <p class="card-fee">Annual Fee: {{cardType.annualfee}}</p>
+            <p class="card-description1">{{cardType.description}}</p>
+          </div>
+        </div>
+
+        <p style="font-size: 15px; font-weight: 360;">New Card Member Offer</p>
+        <div style="background-color: royalblue">
+          <p class="card-bonus">{{cardType.bonus}}</p>
+          <p class="card-otherbonus">{{cardType.otherbonus}}</p>
+        </div>
+
+        <hr>
+
+        <p style="font-size: 15px; font-weight: 360;">All Benefits</p>
+        <div fxLayout="column" fxLayoutAlign="center">
+          <mat-card *ngFor="let b of cardType.benefits" style="padding: 20px 50px;width: 500px; margin-left: 75px; margin-bottom: 30px;" class="mat-elevation-z3">
+            <img style="width: 36px;height: 36px; float: left" [src]="b.img" alt="icon">
+            <span style="clear: both" class="benefit-name">{{b.name}}</span>
+            <hr>
+            <p class="benefit-content">{{b.description}}</p>
+          </mat-card>
+        </div>
+
+      </mat-card>
+
+    </div>
+
+
+  </div>
+
+</div>

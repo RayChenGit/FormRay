@@ -1,0 +1,31 @@
+table {
+  width: 100%;
+}
+
+.mat-header-cell {
+  text-align: center;
+  justify-content:center;
+}
+
+.mat-cell {
+  text-align: center;
+  justify-content:center;
+}
+
+.money-title {
+  color: royalblue;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 22px;
+  margin-bottom : 10px;
+}
+
+.money-number {
+  color: black;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+}
+

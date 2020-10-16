@@ -1,0 +1,36 @@
+<main class="cards-container">
+  <mat-card class="mat-elevation-z0 card-Card">
+
+    <mat-card-header style="width: 380px;">
+      <mat-card-title style="font-size: 20px;">Decide this dispute</mat-card-title>
+      <a href="javascript:;" (click)="back()">back to dispute list</a>
+    </mat-card-header>
+
+    <div class="content">
+
+      <mat-card class="mat-elevation-z3" style="width: 500px; height: 160px;">
+        <a href="javascript:void(0)"><p style="font-size: 15px;">Detailed information about this disputed transaction</p></a>
+        <p>In real-life business, more detailed information about this transaction could be provided here</p>
+        <p>After approval of this dispute, credit card company may investigate this transaction and contact with the merchant </p>
+      </mat-card>
+
+      <div style="margin-top: 20px; display: flex; align-content: space-around">
+
+        <div style="display: flex; flex-direction: column;">
+          <p style="color: royalblue">Dispute reason: <span style="color: black">{{bankerService.disputing.reason}}</span></p>
+          <p style="color: royalblue">Transaction time: <span style="color: black">{{bankerService.disputing.transaction.time}}</span></p>
+          <p style="color: royalblue">Transaction information: <span style="color: black">{{bankerService.disputing.transaction.description}}</span></p>
+          <p style="color: royalblue">Transaction amount: <span style="color: black">{{bankerService.disputing.transaction.amount | currency}}</span></p>
+
+          <div>
+             <button style="margin-right: 30px; width:150px;" mat-raised-button color="primary" (click)="decideDispute(true)">Approve</button> &nbsp;
+             <button style="width:150px;"  mat-raised-button color="warn" (click)="decideDispute(false)">Deny</button>
+          </div> &nbsp;
+        </div>
+
+      </div>
+    </div>
+
+
+  </mat-card>
+</main>

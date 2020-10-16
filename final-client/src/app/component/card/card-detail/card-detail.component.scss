@@ -1,0 +1,131 @@
+.cardDetail {
+  padding-left: 5%;
+  padding-right: 5%;
+  width: 90%;
+  min-width: 500px;
+}
+
+.parent {
+  display: flex;
+  margin-top: 66px;
+}
+
+.left {
+  flex: 0 1 220px;
+  margin-left: 10%;
+  margin-right: 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.right {
+  flex: 1 0 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.card-img {
+  width:  215px;
+  height: 133px;
+}
+
+.card-description {
+  color: royalblue;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 30px;
+  padding-top : 15px;
+  padding-bottom: 15px;
+}
+
+.card-bonus {
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 28px;
+  padding-left: 30px;
+  padding-top: 20px;
+}
+.card-otherbonus {
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 22px;
+  padding-left: 30px;
+  padding-bottom: 20px;
+}
+
+.benefit-name {
+  color: royalblue;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 30px;
+  padding-left: 20px;
+}
+
+.benefit-content {
+
+  color: black;
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 30px;
+}
+
+
+.hide {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+
+  .hide {
+    display: flex;
+    flex-direction: row;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    border-bottom: solid royalblue;
+    margin-bottom: 20px;
+  }
+
+  .left {
+    display: none;
+  }
+
+  .right {
+    margin-left: 10%;
+  }
+}
+
+.hide-img {
+  width:  162px;
+  height: 100px;
+}
+
+.card-name {
+  color: black;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 22px;
+  padding-top: 8px;
+}
+.card-fee {
+  color: black;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 360;
+  line-height: 15px;
+}
+.card-description1 {
+  color: royalblue;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 20px;
+}

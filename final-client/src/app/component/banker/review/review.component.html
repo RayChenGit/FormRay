@@ -1,0 +1,64 @@
+<main class="cards-container">
+  <mat-card class="mat-elevation-z0 card-Card">
+
+    <mat-card-header style="width: 380px;">
+      <mat-card-title style="font-size: 20px;">Raw Applications</mat-card-title>
+      <ng-container *ngIf="bankerService.unReviewedSubmission.data.length === 0">
+        <p style="color: royalblue">No raw application now</p>
+      </ng-container>
+    </mat-card-header>
+
+    <table mat-table [dataSource]="bankerService.unReviewedSubmission" >
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fullname">
+        <th mat-header-cell *matHeaderCellDef> Full Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.fullname}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="datebirth">
+        <th mat-header-cell *matHeaderCellDef> Date of Birth </th>
+        <td mat-cell *matCellDef="let element"> {{element.datebirth}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="annualincome">
+        <th mat-header-cell *matHeaderCellDef> Annual Income </th>
+        <td mat-cell *matCellDef="let element"> {{element.annualincome}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="incomesource">
+        <th mat-header-cell *matHeaderCellDef> Income Source </th>
+        <td mat-cell *matCellDef="let element"> {{element.incomesource}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="applycard">
+        <th mat-header-cell *matHeaderCellDef> Apply Card </th>
+        <td mat-cell *matCellDef="let element"> {{element.cardtype.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ssn">
+        <th mat-header-cell *matHeaderCellDef> SSN </th>
+        <td mat-cell *matCellDef="let element">
+          <button class="btn btn-primary" (click)="setReviewing(element)">{{element.ssn}}</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons></mat-paginator>
+
+
+  </mat-card>
+</main>
+

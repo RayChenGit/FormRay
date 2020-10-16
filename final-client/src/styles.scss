@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.centerRay {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.pink-snackbar {
+  background: green;
+}
+
+.blue-snackbar {
+  background: #2196F3;
+}
+
+.red-snackbar {
+  background: red;
+  color: #ffffff;
+}
+
+

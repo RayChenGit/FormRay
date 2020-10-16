@@ -1,0 +1,39 @@
+<main class="container centerRay">
+
+  <mat-card class="cardChange mat-elevation-z0">
+
+    <mat-card-title class="title">Add Card</mat-card-title>
+
+    <form  [formGroup]="addFormGroup" (ngSubmit)="addCard()">
+
+      <div fxLayout="column" fxLayoutAlign="center" style="margin-top: 25px">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Card Number</mat-label>
+          <input type="text" name="cardnumber" matInput formControlName="cardnumber" autocomplete="off" (input)="cardPattern($event)">
+          <mat-error *ngIf="addFormGroup.get('cardnumber').getError('required')">Card number is required</mat-error>
+          <mat-error *ngIf="addFormGroup.get('cardnumber').getError('pattern')">Card number may not be valid</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline">
+          <mat-label>Card Four-number Id</mat-label>
+          <input type="text" name="cardid" matInput formControlName="cardid" autocomplete="off" (input)="onlyNumber($event)">
+          <mat-error *ngIf="addFormGroup.get('cardid').getError('required')">Card 4-number id is required</mat-error>
+          <mat-error *ngIf="addFormGroup.get('cardid').getError('pattern')">Card number may not be valid</mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <button type="submit" [disabled]="addFormGroup.invalid" style="width:100%; margin-top: 15px; margin-bottom: 30px;" mat-raised-button color="primary">Add this Card</button>
+
+      <div style="display: flex; justify-content: center">
+      <a href="javascript:;" (click)="back()">Back to service list</a>
+      </div>
+
+    </form>
+
+
+  </mat-card>
+
+</main>

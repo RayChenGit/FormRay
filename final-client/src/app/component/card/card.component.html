@@ -1,0 +1,8 @@
+<main class="cards-container">
+
+    <ng-container *ngIf="cardService.cardTypes">
+      <app-card-overview *ngFor="let c of cardService.cardTypes" [cardType]="c"></app-card-overview>
+    </ng-container>
+
+</main>
+

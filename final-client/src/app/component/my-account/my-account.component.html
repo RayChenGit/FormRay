@@ -1,0 +1,56 @@
+<app-header></app-header>
+
+<div class="parent">
+
+  <div class="left">
+    <div class="hide">
+      <mat-form-field appearance="outline">
+        <mat-select-trigger>
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <ng-container *ngIf="cardService.activedCard">
+              <img style="padding-bottom: 10px; height: 66px; width: 90px" [src]="cardService.activedCard.cardType.image" [alt]="cardService.activedCard.cardType.name">
+            </ng-container>
+          </div>
+        </mat-select-trigger>
+        <mat-select (selectionChange)="active($event.value)" placeholder="Choose your Card">
+          <mat-option *ngFor="let c of authService.user.cards;" [value]="c.cardnumber" style="width: 240px; height: 70px;">
+            <img style="height: 40px; width: 62px; margin-right: 20px" src="{{c.cardType.image}}" [alt]="c.cardType.name">ending with {{c.cardnumber.slice(12)}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button style="margin-left: 30px; margin-top: 78px; height: 40px; width: 180px" class="btn btn-primary" (click)="authService.getNewest()">Refresh Card Data</button>
+
+    </div>
+
+    <mat-card class="mat-elevation-z3">
+      <router-outlet></router-outlet>
+    </mat-card>
+
+  </div>
+
+
+  <div class="right">
+
+    <div style="width: 120px;">
+    <mat-form-field appearance="outline">
+      <mat-select-trigger>
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <ng-container *ngIf="cardService.activedCard">
+          <img style="height: 70px; width: 110px" [src]="cardService.activedCard.cardType.image" [alt]="cardService.activedCard.cardType.name">
+          <p style="margin-top: 10px; font-size: 12px; font-family: 'Open Sans Condensed', sans-serif; font-weight: 500;">{{cardService.activedCard.cardType.name}}</p>
+          </ng-container>
+        </div>
+      </mat-select-trigger>
+      <mat-select (selectionChange)="active($event.value)" placeholder="Choose your Card">
+        <mat-option *ngFor="let c of authService.user.cards;" [value]="c.cardnumber" style="width: 280px; height: 100px;">
+            <img style="height: 70px; width: 110px; margin-right: 20px" src="{{c.cardType.image}}" [alt]="c.cardType.name">ending with {{c.cardnumber.slice(12)}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+      <button style="width: 200px" class="btn btn-primary" (click)="authService.getNewest()">Refresh Card Data</button>
+
+    </div>
+  </div>
+
+</div>

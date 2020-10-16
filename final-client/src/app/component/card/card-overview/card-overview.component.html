@@ -1,0 +1,67 @@
+<!--<a routerLink="/product-detail/{{product.id}}}">-->
+<!--<a [routerLink]="['/product-detail', cardType.id]">-->
+
+<mat-card class="card-Card mat-elevation-z4">
+
+    <mat-card-header style="width: 380px;">
+      <mat-card-title style="font-size: 20px;">{{cardType.name}}</mat-card-title>
+      <mat-card-subtitle style="color: black">Annual Fee: {{cardType.annualfee}}</mat-card-subtitle>
+    </mat-card-header>
+
+
+    <mat-card-content class="content">
+
+      <div class="card-picture-container">
+
+        <div class="card-picture-box">
+          <img class="card-img" [src]="cardType.image" alt="card image">
+        </div>
+
+        <div class="card-button">
+          <button type="button" class="btn btn-primary" style="margin-right: 20px; margin-bottom: 20px;" (click)="routeToSubmit()">Apply Now</button>
+          <button type="button" class="btn btn-info" style="margin-right: 20px; margin-bottom: 20px;" (click)="routeToDetail()">View Details</button>
+        </div>
+
+      </div>
+
+      <div class="card-info-container">
+        <div class="card-description">
+          {{cardType.description}}
+        </div>
+        <div class="card-bonus">
+          {{cardType.bonus | uppercase}}
+        </div>
+        <div class="card-otherbonus">
+          {{cardType.otherbonus}}
+        </div>
+      </div>
+
+      <div class="card-benefit-container">
+        <div class="card-benefit-box" *ngIf="cardType.benefits[0]">
+        <img class="icon-img" src="{{cardType.benefits[0].img}}" alt="icon">
+        {{cardType.benefits[0].name}}
+        </div>
+        <div class="card-benefit-box" *ngIf="cardType.benefits[1]">
+        <img class="icon-img" src="{{cardType.benefits[1].img}}" alt="icon">
+          {{cardType.benefits[1].name}}
+        </div>
+        <div class="card-benefit-box" *ngIf="cardType.benefits[2]">
+        <img class="icon-img" src="{{cardType.benefits[2].img}}" alt="icon">
+        {{cardType.benefits[2].name}}
+        </div>
+        <div class="card-benefit-box">
+          <p style="color: royalblue">See more in details</p>
+        </div>
+      </div>
+
+    </mat-card-content>
+
+</mat-card>
+
+
+
+
+
+
+<!--</a>-->
+

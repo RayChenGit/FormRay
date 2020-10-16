@@ -1,0 +1,115 @@
+.card-Card {
+  margin-top: 30px;
+  padding-left: 5%;
+  padding-right: 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-picture-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-picture-box {
+}
+
+.card-button {
+  padding-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-info-container {
+  width: 400px;
+  margin-left: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.card-benefit-container {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+.card-benefit-box {
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+.card-img {
+  width:  232px;
+  height: 144px;
+}
+.icon-img {
+  width:  30px;
+  height: 30px;
+}
+
+button {
+  width: 180px;
+}
+
+@media screen and (max-width: 980px) {
+  .card-benefit-container {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .card-info-container {
+    display: none;
+  }
+  .card-picture-container {
+    flex-direction: row;
+  }
+  .card-img {
+    width:  192px;
+    height: 120px;
+  }
+  .card-picture-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 20px;
+  }
+  button {
+    width: 136px;
+  }
+  .card-button {
+    margin-left: 40px;
+  }
+
+}
+
+
+.card-description {
+  color: royalblue;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 40px;
+  padding : 20px 20px;
+}
+.card-bonus {
+  color: black;
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 28px;
+  padding: 0 20px;
+}
+.card-otherbonus {
+  color: black;
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 22px;
+  padding: 10px 20px;
+}

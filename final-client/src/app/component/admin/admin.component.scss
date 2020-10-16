@@ -1,0 +1,12 @@
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: space-around;
+}
+
+.card-Card {
+  margin-top: 30px;
+  padding-left: 5%;
+  padding-right: 5%;
+}

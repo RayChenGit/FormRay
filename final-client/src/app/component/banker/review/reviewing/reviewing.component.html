@@ -1,0 +1,39 @@
+<main class="cards-container">
+  <mat-card class="mat-elevation-z0 card-Card">
+
+    <mat-card-header style="width: 380px;">
+      <mat-card-title style="font-size: 20px;">Review this application</mat-card-title>
+      <a href="javascript:;" (click)="back()">back to review list</a>
+    </mat-card-header>
+
+    <div class="content">
+
+      <mat-card class="mat-elevation-z3" style="width: 500px; height: 250px;">
+        <a href="javascript:void(0)"><p style="font-size: 15px;">Credit Report of {{bankerService.reviewing.ssn}}</p></a>
+        <p>For demo, this is hard code and only show the SSN number.</p>
+        <p>In real-life business, the credit report is needed when deciding whether to approve the credit card application.</p>
+        <p>When customer submitted their valid application, credit card company would request credit report from the 3 credit bureau (TransUnion, Experian, Equifax) based on SSN and other provided information.</p>
+        <p>Banker could get the corresponding credit report here.</p>
+      </mat-card>
+
+      <div style="margin-top: 20px; display: flex; align-content: space-around">
+
+        <img style="width: 190px; height: 120px; margin-right: 50px;" [src]="bankerService.reviewing.cardtype.image" [alt]="bankerService.reviewing.cardtype.name">
+
+        <form fxLayout="column" [formGroup]="reviewForm" (ngSubmit)="review()">
+
+          <mat-form-field>
+            <mat-label>Make pre advice</mat-label>
+            <textarea rows="2" cols="100" name="bankeradvice" formControlName="bankeradvice" matInput required></textarea>
+          </mat-form-field>
+
+          <button style="width:100%; margin-top: 15px;" [disabled]="reviewForm.invalid" mat-raised-button color="primary" type="submit">Review</button> &nbsp;
+        </form>
+
+      </div>
+
+    </div>
+
+
+  </mat-card>
+</main>

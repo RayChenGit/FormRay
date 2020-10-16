@@ -1,0 +1,62 @@
+<main class="container centerRay">
+
+  <mat-card class="cardChange mat-elevation-z0">
+
+    <mat-card-title class="title">Manage Payment</mat-card-title>
+
+    <table mat-table [dataSource]="auth.user.payments" >
+
+      <ng-container matColumnDef="bank">
+        <th mat-header-cell *matHeaderCellDef> Bank Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.bank | uppercase}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="accountnumber">
+        <th mat-header-cell *matHeaderCellDef> Account Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.accountnumber}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell  *matHeaderCellDef> Delete </th>
+        <td mat-cell *matCellDef="let element" >
+          <button mat-raised-button color="primary" (click)="delete(element)" [disabled]="auth.user.payments.length < 2"> Delete </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <div style="display: flex; justify-content: center; margin-top: 20px;">
+      <a href="javascript:;" (click)="back()">Back to service list</a>
+    </div>
+
+    <p class="title1">Add Payment</p>
+
+    <form fxLayout="column" #form="ngForm" (ngSubmit)="add(form.value)">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Bank Name</mat-label>
+        <input name="bank" ngModel matInput type="text" required>
+        <mat-error>Please enter the bank name</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Account Number</mat-label>
+        <input name="accountnumber" ngModel matInput type="text" required>
+        <mat-error>Please enter the account number</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Route Number</mat-label>
+        <input name="routenumber" ngModel matInput type="text" required>
+        <mat-error>Please enter the route number</mat-error>
+      </mat-form-field>
+
+      <button style="width:100%; margin-top: 15px;" [disabled]="form.invalid" mat-raised-button color="primary" type="submit">Add Payment</button> &nbsp;
+
+    </form>
+
+
+  </mat-card>
+</main>

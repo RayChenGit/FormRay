@@ -1,0 +1,56 @@
+<a href="javascript:;" (click)="back()">back to statement</a>
+
+<mat-card class="mat-elevation-z0" style="margin-top: 20px;">
+  <p style="font-size: 20px; font-family: 'Roboto', 'Helvetica-neue', sans-serif">You are going to dispute this transaction: </p>
+  <p style="color: royalblue">(You can also dispute this transaction through the service line: 734-888-8888)</p>
+  <hr>
+  <p style="color: royalblue">Transaction time: <span style="color: black">{{transactionService.disputeOne.time}}</span></p>
+  <p style="color: royalblue">Transaction information: <span style="color: black">{{transactionService.disputeOne.description}}</span></p>
+  <p style="color: royalblue">Transaction amount: <span style="color: black">{{transactionService.disputeOne.amount | currency}}</span></p>
+
+
+
+  <div style="margin-left: 30px;">
+  <form #Form="ngForm" (submit)="dispute(Form.value)" novalidate>
+    <div>
+      <input id="r1" type="radio" class="custom-control-input" value="Charges with wrong date or dollar amount" name="reason" ngModel required>
+      <label class="custom-control-label" for="r1">Charges with wrong date or dollar amount</label>
+    </div>
+
+    <div>
+      <input id="r2" type="radio" class="custom-control-input" value="Math errors (such as an incorrect total after adding a tip)" name="reason" ngModel required>
+      <label class="custom-control-label" for="r2">Math errors (such as an incorrect total after adding a tip)</label>
+    </div>
+
+    <div>
+      <input id="r3" type="radio" class="custom-control-input" value="Charges for which you ask for proof or clarification" name="reason" ngModel required>
+      <label class="custom-control-label" for="r3">Charges for which you ask for proof or clarification</label>
+    </div>
+
+    <div>
+      <input id="r4" type="radio" class="custom-control-input" value="Unauthorized charges" name="reason" ngModel required>
+      <label class="custom-control-label" for="r4">Unauthorized charges</label>
+    </div>
+
+    <div>
+      <input id="r5" type="radio" class="custom-control-input" value="Charges for items or services you never accepted or that were not delivered as agreed" name="reason" ngModel required>
+      <label class="custom-control-label" for="r5">Charges for items or services you never accepted or that were not delivered as agreed</label>
+    </div>
+
+    <div>
+      <input id="r6" type="radio" class="custom-control-input" name="reason" value="other" ngModel required>
+      <label class="custom-control-label" for="r6">
+        Other <input #input type="text" name="other_reason" />​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+      </label>
+    </div>
+
+    <br>
+    <button type="submit" [disabled]="Form.invalid" class="btn btn-primary">Submit dispute</button>
+  </form>
+
+</div>
+
+
+</mat-card>
+
+

@@ -1,0 +1,33 @@
+<main class="container centerRay">
+
+    <mat-card class="cardLogin mat-elevation-z2">
+
+    <mat-card-title class="title">Log in to My Account</mat-card-title>
+
+    <form fxLayout="column" #form="ngForm" (ngSubmit)="submit(form)">
+
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input name="username" ngModel matInput type="text" required>
+        <mat-error>Username is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input name="password" ngModel matInput type="password" minlength="3" required>
+        <mat-error>Password has to be no less then 3 characters</mat-error>
+      </mat-form-field>
+
+      <mat-checkbox color="primary" (change)="change()" style="margin-top: 10px;">Remember Me</mat-checkbox>
+
+      <button style="width:100%; margin-top: 15px;" [disabled]="form.invalid" mat-raised-button color="primary" type="submit">Login</button> &nbsp;
+
+    </form>
+
+      <div style="text-align: center">
+      <a class="ref" routerLink="/register">Create New Online Account</a>
+      </div>
+
+    </mat-card>
+
+</main>

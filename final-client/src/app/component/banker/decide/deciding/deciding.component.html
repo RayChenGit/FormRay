@@ -1,0 +1,39 @@
+<main class="cards-container">
+  <mat-card class="mat-elevation-z0 card-Card">
+
+    <mat-card-header style="width: 380px;">
+      <mat-card-title style="font-size: 20px;">Decide this application</mat-card-title>
+      <a href="javascript:;" (click)="back()">back to decision list</a>
+    </mat-card-header>
+
+    <div class="content">
+
+      <div style="margin-top: 20px; display: flex; align-content: space-around">
+
+        <div style="display: flex; flex-direction: column; margin-right: 60px;">
+          <img style="width: 170px; height: 110px; margin-bottom: 20px;" [src]="bankerService.deciding.cardtype.image" [alt]="bankerService.deciding.cardtype.name">
+          <p style="color: royalblue">Pre-advice: {{this.bankerService.deciding.bankeradvice}}</p>
+        </div>
+
+        <form fxLayout="column" #form="ngForm">
+
+          <mat-form-field appearance="outline">
+            <mat-label>If approving, set Card-Limit</mat-label>
+            <input type="number" name="limit" ngModel matInput>
+          </mat-form-field>
+
+          <div style="display: flex; margin-top: 10px;">
+            <button style="margin-right: 30px; width:100px;" [disabled]="!form.value.limit"
+                  mat-raised-button color="primary" (click)="decide(form, true)">Approve</button> &nbsp;
+             <button style="width:100px;"  mat-raised-button color="warn" (click)="decide(form, false)">Deny</button> &nbsp;
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+
+  </mat-card>
+</main>

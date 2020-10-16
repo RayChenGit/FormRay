@@ -1,0 +1,44 @@
+<main class="cards-container">
+  <mat-card class="mat-elevation-z0 card-Card">
+
+    <mat-card-header style="width: 380px;">
+      <mat-card-title style="font-size: 20px;">Pre-reviewed Applications</mat-card-title>
+      <ng-container *ngIf="bankerService.unDecidedSubmission.data.length === 0">
+        <p style="color: royalblue">All clear!</p>
+      </ng-container>
+    </mat-card-header>
+
+    <table mat-table [dataSource]="bankerService.unDecidedSubmission" >
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="applycard">
+        <th mat-header-cell *matHeaderCellDef> Apply Card </th>
+        <td mat-cell *matCellDef="let element"> {{element.cardtype.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="bankeradvice">
+        <th mat-header-cell *matHeaderCellDef> Pre Advice </th>
+        <td mat-cell *matCellDef="let element"> {{element.bankeradvice}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="decide">
+        <th mat-header-cell *matHeaderCellDef> Decide </th>
+        <td mat-cell *matCellDef="let element">
+          <button class="btn btn-primary" (click)="setDeciding(element)">Decide</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons></mat-paginator>
+
+
+  </mat-card>
+</main>
+

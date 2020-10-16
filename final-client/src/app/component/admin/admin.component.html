@@ -1,0 +1,80 @@
+<main class="cards-container">
+  <div class="mat-elevation-z3 card-Card">
+
+    <ng-container *ngIf="barChartData">
+      <div style="width: 900px; margin: 30px;">
+        <mat-card-header>
+          <mat-card-title style="font-size: 20px; padding-top: 20px; padding-bottom: 20px;">Card Application Distribution</mat-card-title>
+        </mat-card-header>
+        <canvas baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [plugins]="barChartPlugins"
+                [legend]="barChartLegend"
+                [chartType]="barChartType"
+                [colors]="donutColors">
+        </canvas>
+      </div>
+    </ng-container>
+
+    <hr>
+
+    <ng-container *ngIf="barChartData1">
+      <div style="width: 900px; margin: 30px;">
+        <mat-card-header>
+          <mat-card-title style="font-size: 20px; padding-top: 20px; padding-bottom: 20px;">Applicant Income Average</mat-card-title>
+        </mat-card-header>
+        <canvas baseChart
+                [datasets]="barChartData1"
+                [labels]="barChartLabels1"
+                [options]="barChartOptions1"
+                [plugins]="barChartPlugins1"
+                [legend]="barChartLegend1"
+                [chartType]="barChartType1"
+                [colors]="donutColors1">
+        </canvas>
+      </div>
+    </ng-container>
+
+    <hr>
+
+    <ng-container *ngIf="doughnutChartData">
+      <div style="margin: 30px; width: 700px;">
+        <mat-card-header>
+          <mat-card-title style="font-size: 20px; padding-top: 20px; padding-bottom: 20px;">Card Application Decision</mat-card-title>
+        </mat-card-header>
+        <canvas baseChart
+                [data]="doughnutChartData"
+                [labels]="doughnutChartLabels"
+                [chartType]="doughnutChartType"
+                style="margin-left: 80px;">
+        </canvas>
+      </div>
+    </ng-container>
+
+    <hr>
+
+    <ng-container *ngIf="pieChartData">
+      <div style="margin: 30px; width: 700px;">
+        <mat-card-header>
+          <mat-card-title style="font-size: 20px; padding-top: 20px; padding-bottom: 20px;">Dispute Decision</mat-card-title>
+        </mat-card-header>
+      <canvas baseChart
+              [data]="pieChartData"
+              [labels]="pieChartLabels"
+              [chartType]="pieChartType"
+              [options]="pieChartOptions"
+              [plugins]="pieChartPlugins"
+              [legend]="pieChartLegend"
+              style="margin-left: 80px;">
+      </canvas>
+      </div>
+    </ng-container>
+
+  </div>
+</main>
+
+
+
+

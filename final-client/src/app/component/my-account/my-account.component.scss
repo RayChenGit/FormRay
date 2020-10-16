@@ -1,0 +1,41 @@
+.parent {
+  display: flex;
+  margin-top: 66px;
+}
+
+.left {
+  flex: 0 1 800px;
+  margin-left: 8%;
+  margin-right: 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.hide {
+  display: none;
+}
+
+.right {
+  flex: 1 0 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+@media screen and (max-width: 900px) {
+
+  .hide {
+    display: flex;
+    flex-direction: row;
+    padding-left: 10px;
+  }
+  .right {
+    display: none;
+  }
+
+  .left {
+    margin-left: 3%;
+  }
+
+}
+

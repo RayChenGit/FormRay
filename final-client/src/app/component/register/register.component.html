@@ -1,0 +1,181 @@
+<main class="container centerRay">
+
+<mat-card class="cardRegister mat-elevation-z1">
+
+  <mat-horizontal-stepper linear="true" #stepper>
+
+  <ng-container *ngIf="true">
+  <mat-step [stepControl]="cardFormGroup" label="Check Your Received Card">
+
+    <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
+      <h2>
+        Welcome!
+      </h2>
+      <h3>
+        Enter your received card to set up your new Account
+      </h3>
+
+    <form style="display: flex; flex-direction: column; align-content: center" [formGroup]="cardFormGroup" (ngSubmit)="check()">
+
+      <div style="display: flex; justify-content: center">
+
+        <mat-form-field appearance="outline"  style="width: 25%">
+          <mat-label>First 4 Characters</mat-label>
+          <input matInput formControlName="cardnumber1" name="cardnumber1" placeholder="XXXX" required maxlength="4" autocomplete="off" (input)="onlyNumber($event)" >
+        </mat-form-field>
+
+        <span style="font-size: 40px; align-self: center">-</span>
+
+        <mat-form-field appearance="outline" style="width: 30%">
+          <mat-label>Middle 6 Characters</mat-label>
+          <input matInput formControlName="cardnumber2" name="cardnumber2" placeholder="XXXXXX" required maxlength="6" autocomplete="off" (input)="onlyNumber($event)">
+        </mat-form-field>
+
+        <span style="font-size: 40px; align-self: center">-</span>
+
+        <mat-form-field appearance="outline" style="width: 25%">
+          <mat-label>Last 5 Characters</mat-label>
+          <input matInput formControlName="cardnumber3" name="cardnumber3" placeholder="XXXXX" required maxlength="5" autocomplete="off" (input)="onlyNumber($event)">
+        </mat-form-field>
+
+      </div>
+
+      <div style="display: flex; justify-content: center" width="80%">
+        <mat-form-field appearance="outline">
+          <mat-label>Card 4-number id</mat-label>
+          <input matInput formControlName="cardid" name="cardid" placeholder="xxxx" required maxlength="4" autocomplete="off" (input)="onlyNumber($event)">
+        </mat-form-field>
+      </div>
+
+      <button type="submit" *ngIf="!checked; else goToRegister" [disabled]="cardFormGroup.invalid" style="width:100%; margin-top: 15px; margin-bottom: 30px;" mat-raised-button color="primary" >Check your Card</button>
+      <ng-template #goToRegister>
+        <button class="btn btn-primary" matStepperNext style="width:100%; margin-top: 15px; margin-bottom: 30px;">Register</button>
+      </ng-template>
+    </form>
+
+      <img style="width: 500px" src="https://finalprojectray.s3.us-east-2.amazonaws.com/card_preview.JPG" alt="Card-Preview">
+
+    </div>
+
+  </mat-step>
+  </ng-container>
+
+
+
+    <ng-container *ngIf="checked">
+
+      <mat-step [stepControl]="registerFormGroup" optional="false" label="Register" disabled="true">
+
+        <div fxLayout="column" fxLayoutAlign="center">
+          <h3 class="register">
+            Create your New Account!
+          </h3>
+          <hr>
+          <p style="font-size: 20px;">Username and Password</p>
+
+        <form  [formGroup]="registerFormGroup" (ngSubmit)="register()">
+
+          <div fxLayout="column" fxLayoutAlign="center">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input type="text" matInput formControlName="username" (input)="validUsername()" autocomplete="off">
+            <mat-error *ngIf="registerFormGroup.get('username').getError('required')">Username is required</mat-error>
+            <mat-error *ngIf="registerFormGroup.get('username').getError('minlength')">Username has to be at least 3 words</mat-error>
+          </mat-form-field>
+            <p style="color: red" *ngIf="registerFormGroup.get('username').dirty && !this.usernameValid">Username has been used, try another name</p>
+          </div>
+
+          <div fxLayout="column" fxLayoutAlign="center" formGroupName="passwordGroup">
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input type="password" matInput formControlName="password" autocomplete="off">
+              <mat-error *ngIf="registerFormGroup.get('passwordGroup').get('password').getError('required')">Password is required</mat-error>
+              <mat-error *ngIf="registerFormGroup.get('passwordGroup').get('password').getError('minlength')">Password has to be no less then 3 characters long</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Confirm Password</mat-label>
+              <input type="password" matInput formControlName="confirm_password" autocomplete="off">
+              <mat-error>Confirm Password is required</mat-error>
+            </mat-form-field>
+
+            <mat-error>
+              {{registerFormGroup.get('passwordGroup').getError('passwordsNotMatch')}}
+            </mat-error>
+          </div>
+
+          <hr style="margin-bottom: 20px;">
+          <p style="font-size: 20px;">Provide your information</p>
+
+          <div fxLayout="column" fxLayoutAlign="center" formGroupName="informationGroup">
+            <div style="display: flex">
+            <mat-form-field appearance="outline" style="flex: 1">
+              <mat-label>Address</mat-label>
+              <input type="text" matInput formControlName="address1">
+              <mat-error>Main address is required for mailing bill</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="flex: 1">
+              <mat-label>apt number, etc.</mat-label>
+              <input type="text" matInput formControlName="address2">
+            </mat-form-field>
+            </div>
+
+            <div style="display: flex">
+            <mat-form-field appearance="outline" style="flex: 1;">
+              <mat-label>City</mat-label>
+              <input type="text" matInput formControlName="city">
+              <mat-error>City information is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" style="flex: 1;">
+              <mat-label>Zip</mat-label>
+              <input type="text" matInput formControlName="zip">
+              <mat-error *ngIf="registerFormGroup.get('informationGroup').get('zip').getError('required')">Zip code is required for mailing bill</mat-error>
+              <mat-error *ngIf="registerFormGroup.get('informationGroup').get('zip').getError('pattern')">Zip code number is not valid</mat-error>
+            </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Phone</mat-label>
+              <input type="text" matInput formControlName="phone" placeholder="xxx-xxx-xxxx" (input)="phonePattern($event)">
+              <mat-error *ngIf="registerFormGroup.get('informationGroup').get('phone').getError('required')">Phone number is required for contacting you</mat-error>
+              <mat-error *ngIf="registerFormGroup.get('informationGroup').get('phone').getError('pattern')">Phone number is not valid</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput formControlName="email">
+              <mat-error *ngIf="registerFormGroup.get('informationGroup').get('email').getError('required')">Email is required for security check</mat-error>
+              <mat-error *ngIf="registerFormGroup.get('informationGroup').get('email').getError('pattern')">Email is not valid</mat-error>
+            </mat-form-field>
+
+          </div>
+
+          <button type="submit" *ngIf="!registered; else goToRegister" [disabled]="registerFormGroup.invalid" style="width:100%; margin-top: 15px; margin-bottom: 30px;" mat-raised-button color="primary" >Register</button>
+          <ng-template #goToRegister>
+            <button class="btn btn-primary" matStepperNext style="width:100%; margin-top: 15px; margin-bottom: 30px;">Finish</button>
+          </ng-template>
+
+        </form>
+        </div>
+
+      </mat-step>
+    </ng-container>
+
+
+    <ng-container *ngIf="registered">
+      <mat-step optional="false" label="Finish">
+        <div fxLayout="column" fxLayoutAlign="center">
+        <h3 class="finish">Your Account Has Been Created Successfully!</h3>
+        <button mat-raised-button color="primary" (click)="addCheckedCard()" style="margin-top: 20px">Add your Checked Card to Your New Account</button>
+        </div>
+      </mat-step>
+    </ng-container>
+
+</mat-horizontal-stepper>
+
+</mat-card>
+
+</main>

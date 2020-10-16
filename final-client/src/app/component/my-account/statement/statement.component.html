@@ -1,0 +1,79 @@
+<mat-card-header>
+  <mat-card-title style="font-size: 30px; padding-top: 10px;">Statement</mat-card-title>
+  <ng-container *ngIf="cardService.transactions.data.length === 0">
+    <p style="color: royalblue; padding-top: 15px;">No transaction on this card</p>
+  </ng-container>
+</mat-card-header>
+
+<hr>
+
+<div style="display: flex; justify-content: space-around; margin-bottom: 20px; padding-top: 10px;">
+  <div style="display: flex; flex-direction: column; align-items: center">
+    <div class="money-title">Posted Charge</div>
+    <div class="money-number">{{cardService.activedCard.postedcharge | currency}}</div>
+  </div>
+  <div style="display: flex; flex-direction: column; align-items: center">
+    <div class="money-title">Total Balance</div>
+    <div class="money-number" >{{cardService.activedCard.totalbalance | currency}}</div>
+  </div>
+  <div style="display: flex; flex-direction: column; align-items: center">
+    <div class="money-title">Card Limit</div>
+    <div class="money-number">{{cardService.activedCard.cardlimit | currency}}</div>
+  </div>
+</div>
+
+<hr>
+
+<div class="mat-elevation-z0">
+
+<table mat-table [dataSource]="cardService.transactions" >
+
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="time">
+    <th mat-header-cell *matHeaderCellDef> Time </th>
+    <td mat-cell *matCellDef="let element"> {{element.time.slice(11)}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="element.canceled"><span style="color: red;">Canceled: </span></ng-container>
+      <ng-container *ngIf="!element.canceled && element.charged && !element.rewarded"><span style="color: forestgreen;">Charged: </span></ng-container>
+      <ng-container *ngIf="!element.canceled && element.rewarded"><span style="color: royalblue;">Rewarded: </span></ng-container>
+      <ng-container *ngIf="!element.canceled && !element.rewarded && !element.charged && element.disputed"><span style="color: darkorchid;">Disputing: </span></ng-container>
+      {{element.description}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="amount">
+    <th mat-header-cell *matHeaderCellDef> Amount </th>
+    <td mat-cell *matCellDef="let element"> {{element.amount | currency}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="dispute">
+    <th mat-header-cell  *matHeaderCellDef> Dispute </th>
+    <td mat-cell *matCellDef="let element" >
+      <button style="margin-left: 20px;" mat-raised-button color="primary" (click)="dispute(element)" [disabled]="element.canceled || element.charged || element.rewarded || element.disputed"> dispute </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="reward">
+    <th mat-header-cell  *matHeaderCellDef> Reward </th>
+    <td mat-cell *matCellDef="let element" >
+      <button mat-raised-button color="primary" (click)="reward(element)" [disabled]="element.canceled || element.charged || element.rewarded || element.disputed || auth.user.points < 100 * math.floor(element.amount)"> reward </button>
+    </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons></mat-paginator>
+
+</div>

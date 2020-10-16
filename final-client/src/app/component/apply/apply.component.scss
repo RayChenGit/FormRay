@@ -1,0 +1,146 @@
+.parent {
+  display: flex;
+  margin-top: 30px;
+}
+.left {
+  flex: 0 1 700px;
+  margin-left: 15%;
+  margin-right: 6%;
+  display: flex;
+  flex-direction: column;
+}
+
+.apply-form-container {
+  padding-left: 1px;
+
+}
+
+.right {
+  padding-top: 50px;
+  flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hide {
+  display: none;
+}
+
+@media screen and (max-width: 1360px) {
+  .left {
+    margin-left: 6%;
+  }
+}
+
+
+@media screen and (max-width: 1000px) {
+
+  .hide {
+    display: flex;
+    flex-direction: row;
+    padding-left: 10px;
+  }
+  .right {
+    display: none;
+  }
+
+  .left {
+    margin-left: 3%;
+  }
+
+}
+
+.card-img {
+  width:  242px;
+  height: 150px;
+}
+
+.hide-img {
+  width:  162px;
+  height: 100px;
+}
+
+.img-box {
+
+}
+
+.right-information {
+  padding-left: 10px;
+  padding-top: 20px;
+}
+
+
+.card-name {
+  color: black;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 22px;
+  padding-top: 8px;
+}
+.card-fee {
+  color: black;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 360;
+  line-height: 15px;
+}
+.card-description {
+  color: royalblue;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.card-bonus {
+  color: black;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+}
+.card-otherbonus {
+  color: black;
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.info-box {
+  background: #D3D3D3;
+  margin-bottom: 30px;
+  padding-left: 10px;
+  align-content: center;
+}
+.info-word {
+  font-size: 11px;
+  color: dimgray;
+}
+
+.info-box1 {
+  background: #D3D3D3;
+  margin-bottom: 17px;
+  padding-left: 10px;
+  align-content: center;
+}
+.info-word1 {
+  font-size: 12px;
+  color: dimgray;
+}
+
+
+.title{
+  color: black;
+  font-family: 'Lato', sans-serif;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 24px;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: royalblue;
+  font-weight: 800;
+}

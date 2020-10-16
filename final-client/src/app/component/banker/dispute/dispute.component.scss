@@ -1,0 +1,30 @@
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: space-around;
+}
+
+.card-Card {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-header-cell {
+  text-align: center;
+  justify-content:center;
+  padding-left: 20px;
+  padding-right: 10px;
+}
+
+.mat-cell {
+  text-align: center;
+  justify-content:center;
+  padding-left: 20px;
+  padding-right: 10px;
+}
